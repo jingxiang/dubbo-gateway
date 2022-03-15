@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.kalman03.gateway.dubbo.config.GatewayAutoConfiguration

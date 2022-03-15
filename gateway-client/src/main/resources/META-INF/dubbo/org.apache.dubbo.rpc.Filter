@@ -1,0 +1,2 @@
+gatewayConsumerFilter=com.kalman03.gateway.filter.GatewayConsumerFilter
+gatewayProviderFilter=com.kalman03.gateway.filter.GatewayProviderFilter

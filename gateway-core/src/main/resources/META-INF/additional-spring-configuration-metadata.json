@@ -1,0 +1,40 @@
+{
+	"properties": [
+		{
+			"name": "gateway.dubbo.registry.address",
+			"type": "java.lang.String",
+			"description": "Dubbo注册中心地址，如：redis://127.0.0.1:6379 或 zookeeper://127.0.0.1:2181等",
+			"defaultValue": ""
+		},
+		{
+			"name": "gateway.dubbo.openservice",
+			"type": "java.lang.Boolean",
+			"description": "是否只限制访问声明了openservice的接口",
+			"defaultValue": "false"
+		},
+		{
+			"name": "gateway.netty.server.port",
+			"type": "java.lang.Integer",
+			"description": "网关服务启动port",
+			"defaultValue": "80"
+		},
+		{
+			"name": "gateway.netty.server.host",
+			"type": "java.lang.String",
+			"description": "网关服务启动Host，未配置取本机IP",
+			"defaultValue": ""
+		},
+		{
+			"name": "gateway.netty.server.connect-timeout",
+			"type": "java.lang.Integer",
+			"description": "客户端调用服务端接口的超时时间，单位：毫秒",
+			"defaultValue": "5000"
+		},
+		{
+			"name": "gateway.netty.business.thread-count",
+			"type": "java.lang.Integer",
+			"description": "Gateway HTTP线程池处理线程数",
+			"defaultValue": "50"
+		}
+	]
+}
