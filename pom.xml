@@ -126,16 +126,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<distributionManagement>
-        <snapshotRepository>
-            <id>rdc-snapshots</id>
-            <url>https://packages.aliyun.com/maven/repository/2074474-snapshot-XBkuhN/</url>
-        </snapshotRepository>
-        <repository>
-            <id>rdc-releases</id>
-            <url>https://packages.aliyun.com/maven/repository/2074474-release-zTecwL/</url>
-        </repository>
-    </distributionManagement>
 
 </project>
