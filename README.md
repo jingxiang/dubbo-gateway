@@ -160,7 +160,7 @@ public class DubboGatewayTest {
   `CUSTOM路由`专为一些对`PATH路由`与`MIX路由`都不满意的开发者准备，只需要继承[AbstractRouteHandlerInterceptor](https://github.com/jingxiang/dubbo-gateway/blob/main/gateway-core/src/main/java/com/kalman03/gateway/interceptor/AbstractRouteHandlerInterceptor.java) 类，即可轻松实现自定义的路由规则。
   
 
-## 参数透传
+## Param Transmission
 
 用户端通用参数（诸如请求UA/Referer/IP等）以及Token用户信息等，需要传递到服务提供方。Dubbo Gateway与服务提供者之间内置的参数传递走Dubbo的RpcContext。
 
@@ -168,7 +168,7 @@ Dubbo网关内置了`gatewayConsumerFilter`与`gatewayProviderFilter`，可作�
 
 更多使用方式，参考：[gateway-samples](https://github.com/jingxiang/dubbo-gateway/tree/main/gateway-samples/src/main/java/com/kalman03/gateway/samples)
 
-## 唯一要求
+## Attention
 
 Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只能有一个服务入参，且为对象类型（非普通Java数据类型）**。
 
@@ -180,7 +180,7 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 欢迎贡献pull request......
 
-### License
+## License
 
 ImageHosting is released under the Apache License Version 2.0. See the [LICENSE](https://github.com/jingxiang/dubbo-gateway/blob/master/LICENSE) file for details.
 
