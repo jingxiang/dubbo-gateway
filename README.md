@@ -181,7 +181,7 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 ## License
 
-ImageHosting is released under the Apache License Version 2.0. See the [LICENSE](https://github.com/jingxiang/dubbo-gateway/blob/master/LICENSE) file for details.
+Dubbo Gateway is released under the Apache License Version 2.0. See the [LICENSE](https://github.com/jingxiang/dubbo-gateway/blob/master/LICENSE) file for details.
 
 
 
