@@ -20,7 +20,7 @@ public abstract class AbstractRouteHandlerInterceptor implements HandlerIntercep
 	public boolean preHandle(GatewayHttpRequest request, GatewayHttpResponse response) throws Exception {
 		DubboRoute dubboRoute = resolvingDubboRoute(request);
 		if (dubboRoute == null) {
-			log.warn("Route parameters error.Request should matches Path or Mix route rule.");
+			log.warn("Route parameters error.Request should matches Path or Mix route rule.Request path is {}",request.path());
 			response.setRouteError();
 			return false;
 		}
