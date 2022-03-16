@@ -166,7 +166,7 @@ public class DubboGatewayTest {
 
 Dubbo网关内置了`gatewayConsumerFilter`与`gatewayProviderFilter`，可作为Dubbo服务提供者的默认Filter实现，通过该Filter可获取用户端请求的一些参数以及自定义拦截器封装的参数。当然，开发者也可自行在服务提供方读取RpcContext中的传递参数。
 
-更多使用方式，参考：[gateway-samples](https://github.com/jingxiang/dubbo-gateway/tree/main/gateway-samples/src/main/java/com/kalman03/gateway/samples)
+更多使用方式，参考：[gateway-samples](https://github.com/jingxiang/dubbo-gateway/tree/master/gateway-samples) 与 [gateway-samples-provider](https://github.com/jingxiang/dubbo-gateway/tree/master/gateway-samples-provider)
 
 ## Attention
 
