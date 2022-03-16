@@ -1,4 +1,4 @@
-package com.kalman03.gateway.samples.inteceptors;
+package com.kalman03.gateway.samples.interceptors;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

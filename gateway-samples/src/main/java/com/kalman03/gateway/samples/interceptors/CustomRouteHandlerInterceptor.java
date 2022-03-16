@@ -1,4 +1,4 @@
-package com.kalman03.gateway.samples.inteceptors;
+package com.kalman03.gateway.samples.interceptors;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
