@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.config.utils.ReferenceConfigCache;
 import org.apache.dubbo.metadata.definition.model.FullServiceDefinition;
 import org.apache.dubbo.metadata.definition.model.MethodDefinition;
 import org.apache.dubbo.metadata.definition.model.ServiceDefinition;
@@ -19,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.kalman03.gateway.dubbo.MetaData;
 import com.kalman03.gateway.service.DubboInvokerService;
 import com.kalman03.gateway.utils.DubboMatedataUtils;
+import com.kalman03.gateway.utils.ReferenceConfigCache;
 
 /**
  * @author kalman03
