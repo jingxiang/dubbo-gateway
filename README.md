@@ -8,7 +8,7 @@ Dubbo Gateway是一个基于Java语言的Dubbo网关实现。基于Dubbo注册�
 
 ## Requirements
 
-Dubbo 版本：Dubbo 2.7.14+  Dubbo 3.X即将支持
+Dubbo 版本：Dubbo 2.7.14+ 或 Dubbo 3.x
 
 Java 版本：1.8+
 
@@ -175,7 +175,6 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 ## TODO
 
-- Dubbo 3.x支持 （开发中）
 - Dubbo可视化文档自动化系统（即将开放，将以独立项目）
 
 欢迎贡献pull request......
