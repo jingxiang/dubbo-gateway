@@ -41,11 +41,11 @@ public class RpcContextHandlerInterceptor implements HandlerInterceptor {
 	}
 
 	private Map<String, String> getAllowHeaderMap(GatewayHttpRequest request) {
-		Map<String, String> map = getAllHeaders(request);
 		Set<String> allowKeys = getAllowHeadersKey();
 		if (CollectionUtils.isEmpty(allowKeys)) {
-			return map;
+			return newHashMap();
 		}
+		Map<String, String> map = getAllHeaders(request);
 		Map<String, String> resultMap = newHashMap();
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (allowKeys.contains(entry.getKey())) {

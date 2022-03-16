@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractRouteHandlerInterceptor implements HandlerInterceptor {
 
-	abstract DubboRoute resolvingDubboRoute(GatewayHttpRequest request);
+	public abstract DubboRoute resolvingDubboRoute(GatewayHttpRequest request);
 
 	@Override
 	public boolean preHandle(GatewayHttpRequest request, GatewayHttpResponse response) throws Exception {

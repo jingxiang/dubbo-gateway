@@ -13,7 +13,6 @@ import org.apache.dubbo.metadata.definition.model.ServiceDefinition;
 import org.apache.dubbo.metadata.report.MetadataReport;
 import org.apache.dubbo.metadata.report.identifier.MetadataIdentifier;
 import org.apache.dubbo.rpc.service.GenericService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -30,7 +29,7 @@ public class DefaultDubboInvokeService implements DubboInvokerService {
 
 	@Resource
 	private ApplicationConfig applicationConfig;
-	@Autowired
+	@Resource
 	private MetadataReport metadataReport;
 
 	@Override

@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import org.apache.dubbo.metadata.definition.model.MethodDefinition;
 import org.apache.dubbo.metadata.definition.model.ServiceDefinition;
 import org.apache.dubbo.metadata.report.identifier.MetadataIdentifier;
+import org.apache.dubbo.rpc.RpcContext;
 import org.apache.dubbo.rpc.protocol.rest.support.ContentType;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactoryUtils;
@@ -31,6 +32,7 @@ import com.alibaba.fastjson.JSON;
 import com.kalman03.gateway.constants.AttributeConstans;
 import com.kalman03.gateway.constants.CoustomHeaderNames;
 import com.kalman03.gateway.constants.RouteRuleType;
+import com.kalman03.gateway.context.RpcThreadContext;
 import com.kalman03.gateway.dubbo.DubboRoute;
 import com.kalman03.gateway.dubbo.MetaData;
 import com.kalman03.gateway.http.GatewayHttpRequest;
@@ -151,6 +153,8 @@ public class DefaultRequestProxyService implements RequestProxyService, Initiali
 			metaData.setServiceDefinition(serviceDefinition);
 			metaData.setMethodDefinition(methodDefinition);
 
+			setAttachement();
+			
 			Object object = dubboInvokerService.invoke(metaData, body);
 			response.setResponseBody(object);
 			response.setResponseStatus(HttpResponseStatus.OK);
@@ -160,6 +164,12 @@ public class DefaultRequestProxyService implements RequestProxyService, Initiali
 			throw e;
 		} finally {
 			adapter.afterCompletion(request, response, exception);
+		}
+	}
+	
+	private void setAttachement() {
+		for (Map.Entry<String, Object> entry : RpcThreadContext.getContextMap().entrySet()) {
+			RpcContext.getContext().setAttachment(entry.getKey(), entry.getValue());
 		}
 	}
 
