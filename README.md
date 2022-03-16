@@ -1,10 +1,10 @@
 ## Introduction
 
-Dubbo Gateway是一个简单易用的Dubbo网关实现。通过将HTTP请求转换为Dubbo协议，泛化调用的方式返回请求结果。它具有如下的特性：
+Dubbo Gateway是一个基于Java语言的Dubbo网关实现。基于Dubbo注册中心的元数据，通过将HTTP请求转换为Dubbo协议，泛化调用的方式返回请求结果。它具有如下的特性：
 
 1. 使用简单，开箱即用，非常适用于一些接口测试场景；
-2. 灵活可拓展。通过Interceptor的实现，可非常方便实现熔断、限流、路由、定制响应、签名等功能。系统也内置了部分Interceptor实现；
-3. 支持可选Dubbo服务调用，开放只该开放的对外Dubbo服务，安全有保证。（基于Feature：https://github.com/apache/dubbo/pull/7660 ）
+2. 灵活可拓展。通过Interceptor的实现，可非常方便实现熔断、限流、路由、定制响应、用户授权等功能。系统也内置了部分Interceptor实现；
+3. 支持仅调用声明为*对外开放的Dubbo服务*，安全保证。（基于Feature：https://github.com/apache/dubbo/pull/7660 ）
 
 ## Requirements
 
