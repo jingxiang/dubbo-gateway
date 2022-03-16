@@ -1,7 +1,9 @@
 package com.kalman03.gateway.netty.handler;
 
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
+import java.net.InetSocketAddress;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -68,7 +70,8 @@ public class HttpProcessChannelHandler extends ChannelInboundHandlerAdapter {
 			@Override
 			public void run() {
 				FullHttpRequest fullHttpRequest = (FullHttpRequest) msg;
-				GatewayHttpRequest request = new DefaultGatewayHttpRequest(fullHttpRequest, null);
+				String remoteAddress = getRemoteAddress(fullHttpRequest, ctx);
+				GatewayHttpRequest request = new DefaultGatewayHttpRequest(fullHttpRequest, remoteAddress);
 				GatewayHttpResponse response = new GatewayHttpResponse();
 				if (HttpMethod.OPTIONS.equals(request.method())) {
 					response.setResponseBody("");
@@ -86,6 +89,17 @@ public class HttpProcessChannelHandler extends ChannelInboundHandlerAdapter {
 				}
 			}
 		});
+	}
+	
+	private String getRemoteAddress(FullHttpRequest fullHttpRequest, ChannelHandlerContext ctx) {
+		String clientIP = fullHttpRequest.headers().get("x-forwarded-for");
+		if (isBlank(clientIP)) {
+			InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
+			if (insocket != null && insocket.getAddress() != null) {
+				clientIP = insocket.getAddress().getHostAddress();
+			}
+		}
+		return clientIP;
 	}
 
 	private void flushResponse(ChannelHandlerContext ctx, GatewayHttpRequest request, GatewayHttpResponse response) {
