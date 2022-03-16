@@ -14,7 +14,7 @@ import com.kalman03.gateway.interceptor.InterceptorRule;
  */
 @Component
 @Order(100)
-@InterceptorRule(routeRuleType = RouteRuleType.PATH, includePatterns = { "/api/**" })
+@InterceptorRule(routeRuleType = RouteRuleType.PATH, includePatterns = { "/gateway-samples-provider/**" })
 public class CustomHanlderInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(GatewayHttpRequest request, GatewayHttpResponse response) throws Exception {

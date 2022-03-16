@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSON;
 import com.kalman03.gateway.context.RpcThreadContext;
 import com.kalman03.gateway.http.GatewayHttpRequest;
 import com.kalman03.gateway.http.GatewayHttpResponse;
@@ -31,7 +32,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 			response.setResponseBody("login required");
 			return false;
 		}
-		RpcThreadContext.setContextValue(Constants.USER_INFO, userInfo);
+		RpcThreadContext.setContextValue(Constants.USER_INFO, JSON.toJSONString(userInfo));
 		return true;
 	}
 
