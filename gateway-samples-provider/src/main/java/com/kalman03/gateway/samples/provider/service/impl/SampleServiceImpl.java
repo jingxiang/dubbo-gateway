@@ -22,7 +22,8 @@ public class SampleServiceImpl implements SampleService {
 
 	@Override
 	public Result<UserInfo> getParamsFromRpcContext() {
-		Object value = RpcThreadContext.getContextValue("userInfo");
+		//使用RpcThreadContext的前提条件：配置gatewayProviderFilter
+		Object value = RpcThreadContext.getContextValue("userinfo");
 		if (value != null) {
 			System.out.println("获取到透传数据：" + JSON.toJSONString(value));
 			return Result.ok(JSON.parseObject(value.toString(), UserInfo.class));
