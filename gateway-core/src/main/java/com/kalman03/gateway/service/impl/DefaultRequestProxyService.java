@@ -180,7 +180,7 @@ public class DefaultRequestProxyService implements RequestProxyService, Initiali
 				return null;
 			}
 			String body = new String(bodyBytes);
-			if (request.contentType().orElse("application/json").equals(ContentType.APPLICATION_JSON_UTF_8)) {
+			if (!request.contentType().orElse("application/json").equals(ContentType.APPLICATION_JSON_UTF_8)) {
 				body = form2Payload(body);
 			}
 			return body;
