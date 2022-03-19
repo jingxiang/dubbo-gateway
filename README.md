@@ -4,11 +4,12 @@ Dubbo Gateway是一个基于Java语言的Dubbo网关实现。基于Dubbo注册�
 
 1. 使用简单，开箱即用，非常适用于一些接口测试场景；
 2. 灵活可拓展。通过Interceptor的实现，可非常方便实现熔断、限流、路由、定制响应、用户授权等功能。系统也内置了部分Interceptor实现；
-3. 支持仅调用声明为*对外开放的Dubbo服务*，安全保证。（基于Feature：https://github.com/apache/dubbo/pull/7660 ）
+3. 支持仅调用声明为*对外开放的Dubbo服务*，安全保证。（基于Feature：https://github.com/apache/dubbo/pull/7660 ）；
+4. 文档自动化生成。基于Javadoc标准的dubbo对外接口生成系统，API写好即可生成文档，同时集成了阿里云OSS，全程仅需几步参数配置，即可可视化预览文档。
 
 ## Requirements
 
-Dubbo 版本：Dubbo 2.7.14+ 或 Dubbo 3.x
+服务提供者Dubbo 版本：Dubbo 2.7.14+ 或 Dubbo 3.x
 
 Java 版本：1.8+
 
@@ -175,7 +176,7 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 ## TODO
 
-- Dubbo可视化文档自动化系统（即将开放，将以独立项目）
+- 更丰富的使用案例
 
 欢迎贡献pull request......
 
