@@ -63,3 +63,13 @@
     line-height: 1.8;
     margin-bottom: 33px;
 }
+.goback {
+    position: absolute;
+    top: 12px;
+    left: 6px;
+    border: 9px solid transparent;
+    border-right: 9px solid #000;
+}
+.goback:hover{border-right: 10px solid #808080;}
+.goback:after{content: '';position: absolute;top: -10px; left: -7px;border: 10px solid transparent;border-right: 10px solid #fff;}
+   

@@ -1,5 +1,7 @@
 package com.kalman03.gateway.doc.domain;
 
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
 import lombok.Data;
 
 /**
@@ -13,7 +15,11 @@ public class AliyunOssProperties {
 	 */
 	private String bucket;
 	/**
-	 * OSS 访问域名
+	 * 文件上传在bucket下的目录
+	 */
+	private String bucketDir;
+	/**
+	 * OSS 访问域名(公网)
 	 */
 	private String endpoint;
 	/**
@@ -29,15 +35,14 @@ public class AliyunOssProperties {
 	 */
 	private String accessKeySecret;
 	/**
-	 * 角色ARN全局唯一，用来指定具体的RAM角色 ARN遵循阿里云的命名规范，格式为：acs:ram::$accountID:role/$roleName
-	 */
-	private String stsRoleArn;
-	/**
 	 * CDN的域名(若有专属cdn域名的话)，否则直接去endpoint对应的公网地址
 	 */
 	private String cdnBaseUrl;
 
 	public String getHost() {
+		if(isNotBlank(cdnBaseUrl)) {
+			return cdnBaseUrl;
+		}
 		return "https://" + getBucket() + "." + getEndpoint();
 	}
 

@@ -7,9 +7,8 @@
     <title>Dubbo service documents</title>
     <style>
 		#include("assets/spring.css.vm")
-		#include("assets/fontawesome.css.vm")
 		#include("assets/header.base.css.vm")
-    </style>
+	</style>
     <script type="text/javascript">
 		#include("assets/zepto.js.vm")
         #include("assets/header.base.js.vm")
@@ -99,7 +98,7 @@
                                             Dubbo provider
                                         </td>
                                         <td class="tableblock halign-left valign-top">
-                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName} →
+                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -142,7 +141,7 @@
                                             Dubbo provider
                                         </td>
                                         <td class="tableblock halign-left valign-top">
-                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName} →
+                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName}
                                         </td>
                                     </tr>
                                 </tbody>

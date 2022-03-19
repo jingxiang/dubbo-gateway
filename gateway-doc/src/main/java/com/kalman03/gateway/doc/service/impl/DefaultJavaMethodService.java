@@ -31,12 +31,13 @@ import com.thoughtworks.qdox.model.impl.DefaultJavaParameterizedType;
 public class DefaultJavaMethodService implements JavaMethodService {
 
 	private final JavaMethod javaMethod;
-	private final ProjectConfig apiConfig;
+	private final ProjectConfig projectConfig;
 	private final JavaProjectBuilder javaBuilder;
 
-	public DefaultJavaMethodService(JavaMethod javaMethod, ProjectConfig apiConfig, JavaProjectBuilder javaBuilder) {
+	public DefaultJavaMethodService(JavaMethod javaMethod, ProjectConfig projectConfig,
+			JavaProjectBuilder javaBuilder) {
 		this.javaMethod = javaMethod;
-		this.apiConfig = apiConfig;
+		this.projectConfig = projectConfig;
 		this.javaBuilder = javaBuilder;
 	}
 
