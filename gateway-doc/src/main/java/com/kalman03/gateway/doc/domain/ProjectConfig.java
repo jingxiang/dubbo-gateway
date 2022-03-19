@@ -3,6 +3,7 @@ package com.kalman03.gateway.doc.domain;
 import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import lombok.Data;
  * @author kalman03
  * @since 2022-03-19
  */
+@Configuration
 @ConfigurationProperties(prefix = "gateway.doc.config")
 @Data
 public class ProjectConfig {

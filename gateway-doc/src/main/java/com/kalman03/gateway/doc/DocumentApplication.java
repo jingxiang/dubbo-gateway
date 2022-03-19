@@ -16,8 +16,6 @@ import com.aliyun.oss.common.auth.DefaultCredentialProvider;
 import com.kalman03.gateway.doc.domain.AliyunOssProperties;
 import com.kalman03.gateway.doc.domain.DocumentObject;
 import com.kalman03.gateway.doc.domain.ProjectConfig;
-import com.kalman03.gateway.doc.service.DocumentRenderService;
-import com.kalman03.gateway.doc.service.DocumentService;
 import com.kalman03.gateway.doc.service.impl.DefaultDocumentRenderService;
 import com.kalman03.gateway.doc.service.impl.DefaultDocumentService;
 
@@ -31,16 +29,17 @@ public class DocumentApplication {
 		try {
 			boolean aliyunOss = false;
 			ProjectConfig projectConfig = config(aliyunOss);
-			DocumentService documentService = new DefaultDocumentService(projectConfig);
+			DefaultDocumentService documentService = new DefaultDocumentService(projectConfig);
+			documentService.init();
 			DocumentObject documentObject = documentService.getDocumentObject();
 			AliyunOssProperties ossProperties = projectConfig.getOss();
 			OSSClient ossClient = null;
 			if(aliyunOss) {
 				ossClient = ossClient(ossProperties);
 			}
-			DocumentRenderService documentRenderService = new DefaultDocumentRenderService(projectConfig, ossClient);
+			DefaultDocumentRenderService documentRenderService = new DefaultDocumentRenderService(projectConfig, ossClient);
+			documentRenderService.init();
 			documentRenderService.render(documentObject);
-			
 			renderDocument();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,7 +74,7 @@ public class DocumentApplication {
 		projectConfig.setDescription("hello，这是关于Samples的文档");
 		if (aliyunOss) {
 			AliyunOssProperties ossProperties = new AliyunOssProperties();
-			//FIXME
+			//TODO
 			projectConfig.setOss(ossProperties);
 		}
 		return projectConfig;

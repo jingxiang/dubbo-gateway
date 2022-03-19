@@ -48,11 +48,15 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class DefaultDocumentService implements DocumentService {
 
 	private final ProjectConfig projectConfig;
-	private final JavaProjectBuilder javaBuilder;
-	private final PodamFactory podamFactory;
 
-	public DefaultDocumentService(ProjectConfig projectConfig) throws IOException {
+	private JavaProjectBuilder javaBuilder;
+	private PodamFactory podamFactory;
+
+	public DefaultDocumentService(ProjectConfig projectConfig) {
 		this.projectConfig = projectConfig;
+	}
+
+	public void init() throws IOException {
 		this.javaBuilder = loadResources();
 		this.podamFactory = new PodamFactoryImpl();
 	}
@@ -158,6 +162,7 @@ public class DefaultDocumentService implements DocumentService {
 
 	private Object manufacturePojo(String fieldFullType, Type... types) {
 		try {
+			fieldFullType = JavaTypeUtils.filterPrimitiveType(fieldFullType);
 			Class<?> clazz = Class.forName(fieldFullType);
 			return podamFactory.manufacturePojoWithFullData(clazz, types);
 		} catch (Exception e) {

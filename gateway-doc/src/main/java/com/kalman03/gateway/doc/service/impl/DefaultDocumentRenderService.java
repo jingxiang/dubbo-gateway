@@ -11,8 +11,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -31,25 +29,18 @@ import com.kalman03.gateway.doc.service.DocumentRenderService;
  * @since 2022-03-19
  */
 public class DefaultDocumentRenderService implements DocumentRenderService {
-
 	private final ProjectConfig projectConfig;
 	private final OSSClient ossClient;
-	private final AliyunOssProperties ossProperties;
 	private VelocityEngine velocityEngine;
+	private AliyunOssProperties ossProperties;
 
 	public DefaultDocumentRenderService(ProjectConfig projectConfig, OSSClient ossClient) {
 		this.projectConfig = projectConfig;
 		this.ossClient = ossClient;
-		this.ossProperties = projectConfig.getOss();
-
-		velocityEngine = new VelocityEngine();
-		velocityEngine.addProperty("resource.loader", "class");
-		velocityEngine.addProperty("class.resource.loader.class",
-				"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 	}
 
-	@PostConstruct
 	public void init() {
+		ossProperties = projectConfig.getOss();
 		velocityEngine = new VelocityEngine();
 		velocityEngine.addProperty("resource.loader", "class");
 		velocityEngine.addProperty("class.resource.loader.class",

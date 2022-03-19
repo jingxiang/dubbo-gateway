@@ -1,8 +1,8 @@
 package com.kalman03.gateway.doc;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +14,7 @@ import com.kalman03.gateway.doc.domain.AliyunOssProperties;
 import com.kalman03.gateway.doc.domain.DocumentObject;
 import com.kalman03.gateway.doc.domain.ProjectConfig;
 import com.kalman03.gateway.doc.service.DocumentRenderService;
+import com.kalman03.gateway.doc.service.DocumentService;
 import com.kalman03.gateway.doc.service.impl.DefaultDocumentRenderService;
 import com.kalman03.gateway.doc.service.impl.DefaultDocumentService;
 
@@ -23,16 +24,23 @@ import com.kalman03.gateway.doc.service.impl.DefaultDocumentService;
  */
 @Configuration(proxyBeanMethods = false)
 public class DocumentAutoConfiguration {
+	@Resource
+	private ProjectConfig projectConfig;
+	@Resource
+	private DocumentService documentService;
+	@Resource
+	private DocumentRenderService documentRenderService;
 
 	@PostConstruct
-	public void autoSmartDoc(ProjectConfig projectConfig, OSSClient ossClient) {
+	public void autoSmartDoc() {
 		if (projectConfig.isAutodoc()) {
 			new Thread(() -> {
 				try {
-					DocumentObject documentObject = new DefaultDocumentService(projectConfig).getDocumentObject();
-					DocumentRenderService documentRenderService = new DefaultDocumentRenderService(projectConfig,
-							ossClient);
+					long start = System.currentTimeMillis();
+					System.out.println("Start to auto documents.");
+					DocumentObject documentObject = documentService.getDocumentObject();
 					documentRenderService.render(documentObject);
+					System.out.println("End auto documents.cost time=" + (System.currentTimeMillis() - start) + "ms");
 				} catch (Throwable e) {
 					e.printStackTrace();
 				}
@@ -45,13 +53,23 @@ public class DocumentAutoConfiguration {
 		return new ProjectConfig();
 	}
 
-	@Bean(destroyMethod = "shutdown")
-	@ConditionalOnProperty(prefix = "gateway.doc.config.oss")
-	public OSSClient ossClient(ProjectConfig projectConfig) {
+	@Bean(initMethod = "init")
+	public DocumentRenderService getDocumentRenderService() {
 		AliyunOssProperties ossProperties = projectConfig.getOss();
-		CredentialsProvider credentialsProvider = new DefaultCredentialProvider(ossProperties.getAccessKeyId(),
-				ossProperties.getAccessKeySecret());
-		ClientConfiguration config = new ClientConfiguration();
-		return new OSSClient(ossProperties.getEndpoint(), credentialsProvider, config);
+
+		OSSClient ossClient = null;
+		if (ossProperties != null) {
+			CredentialsProvider credentialsProvider = new DefaultCredentialProvider(ossProperties.getAccessKeyId(),
+					ossProperties.getAccessKeySecret());
+			ClientConfiguration config = new ClientConfiguration();
+			ossClient = new OSSClient(ossProperties.getEndpoint(), credentialsProvider, config);
+		}
+		return new DefaultDocumentRenderService(projectConfig, ossClient);
 	}
+
+	@Bean(initMethod = "init")
+	public DocumentService getDocumentService() {
+		return new DefaultDocumentService(projectConfig);
+	}
+
 }

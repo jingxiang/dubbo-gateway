@@ -20,6 +20,30 @@ public class JavaTypeUtils {
 		return "java.lang.Object".equals(type0) || "java.lang.Object[]".equals(type0);
 	}
 
+	public static String filterPrimitiveType(String fullType) {
+		switch (fullType) {
+		case "boolean":
+			return "java.lang.Boolean";
+		case "char":
+			return "java.lang.Character";
+		case "int":
+			return "java.lang.Integer";
+		case "byte":
+			return "java.lang.Byte";
+		case "short":
+			return "java.lang.Short";
+		case "long":
+			return "java.lang.Long";
+		case "float":
+			return "java.lang.Float";
+		case "double":
+			return "java.lang.Double";
+		default:
+			break;
+		}
+		return fullType;
+	}
+
 	public static boolean isPrimitive(String type0) {
 		if (Objects.isNull(type0)) {
 			return true;
@@ -80,7 +104,7 @@ public class JavaTypeUtils {
 
 	public static boolean isMap(String type) {
 		if (type.contains("<")) {
-			type = type.substring(0, type.indexOf("<") );
+			type = type.substring(0, type.indexOf("<"));
 		}
 		switch (type) {
 		case "java.util.Map":
