@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubbo service documents</title>
+    <style>
+		#include("assets/spring.css.vm")
+		#include("assets/header.base.css.vm")
+	</style>
+    <script type="text/javascript">
+		#include("assets/zepto.js.vm")
+        #include("assets/header.base.js.vm")
+    </script>
+</head>
+
+<body id="spring-core" class="book toc2 toc-left">
+    <div id="header">
+        <h1>API document of $!{project.projectName}</h1>
+        <div class="details">
+            <span class="method-info" id="revnumber">version $!{document.createTime}</span>
+        </div>
+        <div id="toc" class="toc2">
+            <div id="toctitle">Table of Contents</div>
+            <ul class="sectlevel1">
+				#foreach($apiClassInfo in $!{document.classList})
+                <li><a href="#_$!{apiClassInfo.id}_$!{apiClassInfo.description}">$!{apiClassInfo.id} $!{apiClassInfo.description}</a>
+                    <ul class="sectlevel2">
+						#foreach($apiMethodInfo in $!{apiClassInfo.methodList})
+                        <li>
+							<a href="#_$!{apiMethodInfo.id}_$!{apiMethodInfo.methodComment}">$!{apiMethodInfo.id} $!{apiMethodInfo.methodComment}</a>
+						</li>
+                        #end
+                    </ul>
+                </li>
+				#end
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="preamble">
+            <div class="sectionbody">
+                <div class="paragraph">
+                    <p>$!{project.description}</p>
+                </div>
+            </div>
+        </div>
+		#foreach($apiClassInfo in $!{document.classList})
+        <div class="sect1">
+            <h2 id="_$!{apiClassInfo.id}_$!{apiClassInfo.description}">
+                <a class="anchor" href="#_$!{apiClassInfo.id}_$!{apiClassInfo.description}"></a>
+				$!{apiClassInfo.id} $!{apiClassInfo.description}
+			</h2>
+            <div class="sectionbody">
+                <div class="sidebarblock">
+                    <div class="content">
+                        <div class="paragraph">
+                            <p>$!{apiClassInfo.className}</p>
+							#if(${apiClassInfo.author})<p>Author:$!{apiClassInfo.author}</p>#end
+                            #if(${apiClassInfo.since})<p>Since:$!{apiClassInfo.since}</p>#end
+                        </div>
+                    </div>
+                </div>
+				#foreach($apiMethodInfo in $!{apiClassInfo.methodList})
+                <div class="sect2">
+                    <h3 id="_$!{apiMethodInfo.id}_$!{apiMethodInfo.methodComment}">
+                        <a class="anchor" href="#_$!{apiMethodInfo.id}_$!{apiMethodInfo.methodComment}"></a>
+						$!{apiMethodInfo.id} $!{apiMethodInfo.methodComment}
+                    </h3>
+                    <span class="method-info" id="_$!{apiMethodInfo.id}_Request_URL">Request URL</span>
+                    <div class="listingblock primary">
+                        <div class="title">PATH路由</div>
+                        <div class="content">
+                            <table class="tableblock frame-all grid-all stretch">
+                                <colgroup>
+                                    <col style="width: 34%;">
+                                    <col style="width: 66%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">
+                                            Request URL
+                                        </td>
+                                        <td class="tableblock halign-left valign-top">
+                                           $!{project.protocol}://$!{project.domain}/$!{project.projectName}/$!{apiClassInfo.className}/$!{apiMethodInfo.methodName}/$!{project.group}/$!{project.version}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">Login required</td>
+                                        <td class="tableblock halign-left valign-top">$!{apiMethodInfo.needLogin}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">
+                                            Dubbo provider
+                                        </td>
+                                        <td class="tableblock halign-left valign-top">
+                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="listingblock secondary">
+                        <div class="title">MIX路由</div>
+                        <div class="content">
+                            <table class="tableblock frame-all grid-all stretch">
+                                <colgroup>
+                                    <col style="width: 34%;">
+                                    <col style="width: 66%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">
+                                            Request URL
+                                        </td>
+                                        <td class="tableblock halign-left valign-top">
+											$!{project.protocol}://$!{project.domain}/$!{apiClassInfo.className}/$!{apiMethodInfo.methodName}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">
+                                            Header required
+                                        </td>
+                                        <td class="tableblock halign-left valign-top">
+                                            <code>x-app-name : $!{project.projectName}</code><br>
+                                            <code>x-group : $!{project.group}</code><br>
+                                            <code>x-version : $!{project.version}</code>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td class="tableblock halign-left valign-top">Login required</td>
+                                        <td class="tableblock halign-left valign-top">$!{apiMethodInfo.needLogin}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tableblock halign-left valign-top">
+                                            Dubbo provider
+                                        </td>
+                                        <td class="tableblock halign-left valign-top">
+                                            $!{apiClassInfo.className}#$!{apiMethodInfo.methodName}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <span class="method-info" id="__$!{apiMethodInfo.id}_Request_paramters">Request paramters</span>
+                    #if($apiMethodInfo.requestParamters.size()>0)
+					<table class="tableblock frame-all grid-all stretch">
+                        <colgroup>
+                            <col style="width: 30%;">
+                            <col style="width: 20%;">
+                            <col style="width: 40%;">
+                            <col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="tableblock halign-left valign-top">Parameter</th>
+                                <th class="tableblock halign-left valign-top">Type</th>
+                                <th class="tableblock halign-left valign-top">Description</th>
+                                <th class="tableblock halign-left valign-top">Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+							#foreach($param in $apiMethodInfo.getRequestShowFieldList())
+                            <tr>
+                                <td class="tableblock halign-left valign-top">
+                                    <p class="tableblock"><code>$!{param.showFieldName}</code></p>
+                                </td>
+                                <td class="tableblock halign-left valign-top">
+                                    $!{param.fieldType}
+                                </td>
+                                <td class="tableblock halign-left valign-top">
+                                    $!{param.fieldDesc}
+                                </td>
+                                <td class="tableblock halign-left valign-top">
+                                    $!{param.required}
+                                </td>
+                            </tr>
+							#end
+                        </tbody>
+                    </table>
+
+                    <span class="method-info" id="__$!{apiMethodInfo.id}_Request_examples">Request examples</span>
+                    <div class="listingblock">
+                        <div class="content"><pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">$!{apiMethodInfo.requestJson}</code></pre>
+						</div>
+                    </div>
+					#else
+						<div class="paragraph">
+							<p>None</p>
+                        </div>
+					#end
+
+                    <span class="method-info" id="__$!{apiMethodInfo.id}_Response_fields">Response fields</span>
+					#if($apiMethodInfo.responseParamters.size()>0)
+                        <table class="tableblock frame-all grid-all stretch">
+                            <colgroup>
+                                <col style="width: 30%;">
+                                <col style="width: 20%;">
+                                <col style="width: 40%;">
+                                <col style="width: 10%;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="tableblock halign-left valign-top">Parameter</th>
+                                    <th class="tableblock halign-left valign-top">Type</th>
+                                    <th class="tableblock halign-left valign-top">Description</th>
+                                    <th class="tableblock halign-left valign-top">Required</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                #foreach($param in $!{apiMethodInfo.getResponseShowFieldList()})
+                                <tr>
+                                    <td class="tableblock halign-left valign-top">
+                                        <p class="tableblock"><code>$!{param.showFieldName}</code></p>
+                                    </td>
+                                    <td class="tableblock halign-left valign-top">
+                                        $!{param.fieldType}
+                                    </td>
+                                    <td class="tableblock halign-left valign-top">
+                                        $!{param.fieldDesc}
+                                    </td>
+                                    <td class="tableblock halign-left valign-top">
+                                        $!{param.required}
+                                    </td>
+                                </tr>
+    							#end
+                            </tbody>
+                        </table>
+                        <span class="method-info" id="__$!{apiMethodInfo.id}_Response_examples">Response examples</span>
+                        <div class="listingblock">
+                            <div class="content"><pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">$!{apiMethodInfo.responseJson}</code></pre></div>
+                        </div>
+					#else
+						<div class="paragraph">
+							<p>None</p>
+                        </div>
+					#end
+                </div>
+				#end
+            </div>
+        </div>
+		#end
+    </div>
+    <div id="footer">
+        <div id="footer-text">
+			Last updated $!{document.createTime}
+        </div>
+    </div>
+	<script>
+		#include("assets/highlight.js.vm")
+        hljs.initHighlighting()
+    </script>
+	#include("assets/toc.js.vm")
+</body>
+</html>

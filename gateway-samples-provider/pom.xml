@@ -21,6 +21,11 @@
 			<version>${gateway.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.kalman03</groupId>
+			<artifactId>gateway-doc</artifactId>
+			<version>${gateway.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
 			<exclusions>

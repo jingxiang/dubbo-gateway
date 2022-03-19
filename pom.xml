@@ -43,6 +43,7 @@
 	<modules>
 		<module>gateway-client</module>
 		<module>gateway-core</module>
+		<module>gateway-doc</module>
 		<module>gateway-samples</module>
 		<module>gateway-samples-provider</module>
 	</modules>
@@ -112,6 +113,31 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-collections4</artifactId>
 				<version>4.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.qdox</groupId>
+				<artifactId>qdox</artifactId>
+				<version>2.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-engine-core</artifactId>
+				<version>2.3</version>
+			</dependency>
+			<dependency>
+				<groupId>uk.co.jemos.podam</groupId>
+				<artifactId>podam</artifactId>
+				<version>7.2.8.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>aliyun-java-sdk-core</artifactId>
+				<version>4.5.20</version>
+			</dependency>
+			<dependency>
+				<groupId>com.aliyun.oss</groupId>
+				<artifactId>aliyun-sdk-oss</artifactId>
+				<version>3.11.3</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
