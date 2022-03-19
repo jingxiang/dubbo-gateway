@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -227,6 +228,14 @@ public class DefaultDocumentService implements DocumentService {
 		public boolean filter(File file) {
 			if (file.getAbsolutePath().indexOf("main") < 0) {
 				return false;
+			}
+			if (CollectionUtils.isNotEmpty(projectConfig.getExcludePackages())) {
+				String absolutePath = file.getAbsolutePath().replaceAll("\\/", ".").replaceAll("\\", ".");
+				List<String> result = projectConfig.getExcludePackages().stream()
+						.filter(item -> absolutePath.contains(item)).collect(Collectors.toList());
+				if (!result.isEmpty()) {
+					return false;
+				}
 			}
 			return super.filter(file);
 		}

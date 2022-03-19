@@ -69,13 +69,11 @@ public class DefaultDocumentRenderService implements DocumentRenderService {
 		if (CollectionUtils.isEmpty(applications)) {
 			applications = newArrayList();
 		}
-		if (applications.contains(projectConfig.getProjectName())) {
+		if (!applications.contains(projectConfig.getProjectName())) {
 			needUpdateIndexPage = true;
 			applications.add(projectConfig.getProjectName());
 		}
-
 		String indexObjectKey = ossProperties.getBucketDir() + "/index.html";
-
 		if (needUpdateIndexPage) {
 			File indexFile = renderIndexPage(applications);
 			putObject(indexObjectKey, new FileInputStream(indexFile));
@@ -86,7 +84,7 @@ public class DefaultDocumentRenderService implements DocumentRenderService {
 		putObject(docObjectKey, new FileInputStream(file));
 		file.delete();
 		System.out.println(
-				"Auto ducuments success.You can access by link:" + ossProperties.getHost() + "/" + docObjectKey);
+				"Auto ducuments success.You can access by link：" + ossProperties.getHost() + "/" + indexObjectKey);
 	}
 
 	private void putObject(String objectKey, InputStream content) {
@@ -113,11 +111,8 @@ public class DefaultDocumentRenderService implements DocumentRenderService {
 
 	private File renderIndexPage(List<String> applications) throws IOException {
 		File file = new File("index.html");
-		if (!file.getParentFile().exists()) {
-			file.getParentFile().mkdirs();
-		}
 		VelocityContext context = new VelocityContext();
-		context.put("applications", applications);
+		context.put("appList", applications);
 		FileWriter writer = new FileWriter(file);
 		velocityEngine.mergeTemplate("index.vm", "utf-8", context, writer);
 		writer.flush();

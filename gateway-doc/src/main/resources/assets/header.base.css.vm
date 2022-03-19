@@ -72,4 +72,7 @@
 }
 .goback:hover{border-right: 10px solid #808080;}
 .goback:after{content: '';position: absolute;top: -10px; left: -7px;border: 10px solid transparent;border-right: 10px solid #fff;}
-   
+.weui-grid__label{
+	font-weight: bold;
+	font-size: 26px;
+}

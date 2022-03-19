@@ -17,7 +17,7 @@
 
 <body id="spring-core" class="book toc2 toc-left">
     <div id="header">
-        <h1>API Document</h1>
+        <h1>API document of $!{project.projectName}</h1>
         <div class="details">
             <span class="method-info" id="revnumber">version $!{document.createTime}</span>
         </div>
@@ -42,10 +42,7 @@
         <div id="preamble">
             <div class="sectionbody">
                 <div class="paragraph">
-                    <p>这是关于系统$!{projectName}的Dubbo接口文档.</p>
-                </div>
-                <div class="paragraph">
-                    <p>有话就在这里说</p>
+                    <p>$!{project.description}</p>
                 </div>
             </div>
         </div>
