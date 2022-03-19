@@ -1,0 +1,65 @@
+.listingblock .switch {
+    border-style: none;
+    display: inline-block;
+    position: relative;
+    bottom: -3px;
+}
+
+.listingblock .switch--item {
+    padding: 10px;
+    background-color: #e6e1dc;
+    color: #282c34;
+    display: inline-block;
+    cursor: pointer;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.listingblock .switch--item:not(:first-child) {
+    border-style: none;
+}
+
+.listingblock .switch--item.selected {
+    background-color: #282c34;
+    color: #e6e1dc;
+}
+
+.listingblock pre.highlightjs {
+    padding: 0;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.switch {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #7a2518;
+    display: inline-block;
+}
+
+.switch--item {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #7a2518;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.switch--item:not(:first-child) {
+    border-width: 0 0 0 1px;
+    border-style: solid;
+    border-color: #7a2518;
+}
+
+.switch--item.selected {
+    background-color: #7a2519;
+    color: #ffffff;
+}
+.sect2 .method-info{
+	font-size: 1.5em;
+    line-height: 1.8;
+    margin-bottom: 33px;
+}

@@ -43,6 +43,7 @@
 	<modules>
 		<module>gateway-client</module>
 		<module>gateway-core</module>
+		<module>gateway-doc</module>
 		<module>gateway-samples</module>
 		<module>gateway-samples-provider</module>
 	</modules>
