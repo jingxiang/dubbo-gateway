@@ -54,12 +54,12 @@ public class RpcContextHandlerInterceptor implements HandlerInterceptor {
 		}
 		return resultMap;
 	}
-
+	
 	private Set<String> getAllowHeadersKey() {
 		if (isBlank(allowHeaders)) {
 			return newHashSet();
 		}
-		return StringUtils.commaDelimitedListToSet(",");
+		return StringUtils.commaDelimitedListToSet(allowHeaders);
 	}
 
 	private Map<String, String> getAllHeaders(GatewayHttpRequest request) {
