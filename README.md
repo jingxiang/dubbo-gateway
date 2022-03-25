@@ -180,6 +180,10 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 欢迎贡献pull request......
 
+## Contacts
+
+[QQ group](https://qm.qq.com/cgi-bin/qm/qr?k=KWjcJ90Rh-92oLpdDqdmZ466x6B6Mkv6&jump_from=webapi)：601173814
+
 ## License
 
 Dubbo Gateway is released under the Apache License Version 2.0. See the [LICENSE](https://github.com/jingxiang/dubbo-gateway/blob/master/LICENSE) file for details.
