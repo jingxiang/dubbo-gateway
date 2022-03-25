@@ -182,6 +182,7 @@ Dubbo Gateway对Dubbo服务提供者提供的对外服务有一条要求：**只
 
 ## Contacts
 
+微信：angtMjAxMgo= (base64)
 [QQ group](https://qm.qq.com/cgi-bin/qm/qr?k=KWjcJ90Rh-92oLpdDqdmZ466x6B6Mkv6&jump_from=webapi)：601173814
 
 ## License
