@@ -4,6 +4,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.net.InetSocketAddress;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -131,7 +132,8 @@ public class HttpProcessChannelHandler extends ChannelInboundHandlerAdapter {
 		FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, _response.getResponseStatus(), result);
 
 		response.headers().set(HttpHeaderNames.CONTENT_TYPE, _response.getContentType());
-
+		
+		setCustomHeader(response, _response);
 		// 允许跨域访问
 		response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 		response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS, "*");
@@ -156,6 +158,14 @@ public class HttpProcessChannelHandler extends ChannelInboundHandlerAdapter {
 		return keepAlive;
 	}
 
+	private void setCustomHeader(FullHttpResponse response, GatewayHttpResponse _response) {
+		if (_response.getHeaderMap() != null && !_response.getHeaderMap().isEmpty()) {
+			for(Map.Entry<String, String> entry : _response.getHeaderMap().entrySet()) {
+				response.headers().set(entry.getKey(), entry.getValue());
+			}
+		}
+	}
+	
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) {
 		ctx.flush();
