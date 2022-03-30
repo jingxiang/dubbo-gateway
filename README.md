@@ -25,7 +25,7 @@ Java 版本：1.8+
 <dependency>
 	<groupId>com.kalman03</groupId>
 	<artifactId>gateway-core</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 </dependency>
 ```
 当然，还需要添加Dubbo的注册中心依赖，以Zookeeper为例：
